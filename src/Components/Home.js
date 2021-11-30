@@ -23,6 +23,12 @@ const listaDeProdutos = [
     name: "Foguete da Missão Apollo 15",
     value: 20000.0,
     imageUrl: "https://picsum.photos/200/200",
+  },
+  {
+    id: 2,
+    name: "Foguete da Missão Apollo 15",
+    value: 20000.0,
+    imageUrl: "https://picsum.photos/200/200",
   }
 
 ]
@@ -71,7 +77,7 @@ class Home extends React.Component {
 
       <ContainerHome>
         <BarraInformacoes>
-          <p>Quantidade de produtos: 2</p>
+    <p>Quantidade de produtos: {listaDeProdutos.length}</p>
           <Filtros
             descricao={"Ordenação"}
             opcoes={[

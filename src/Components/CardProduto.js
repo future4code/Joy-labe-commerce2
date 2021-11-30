@@ -18,14 +18,20 @@ border: 1px solid black;
 
 const BotaoAdicionar = styled.button ` 
 margin: 10px;
+cursor: pointer;
+`
+
+const TextoProduto = styled.p ` 
+margin: 5px;
+
 `
 
 export default function CardProduto(props) {
   return (
     <CardDoProduto>
             <ImagemCard src={props.imageUrl}/>
-            <p>{props.descricaoProduto}</p>
-            <p>{props.valorProduto}</p>
+            <TextoProduto>{props.descricaoProduto}</TextoProduto>
+            <TextoProduto>{props.valorProduto}</TextoProduto>
             <BotaoAdicionar>Adicionar ao carrinho</BotaoAdicionar>
     </CardDoProduto>
 
