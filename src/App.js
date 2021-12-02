@@ -117,8 +117,7 @@ function App() {
     <div>
 
       <Home></Home>        
-        
-    </div>
+     </div>
   );
 }
 
