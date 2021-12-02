@@ -14,10 +14,16 @@ export default function Filtros(props) {
   return (
     <ContainerFiltro>
       <p>{props.descricao}</p>
-      <select>
-        {props.opcoes.map(opcao => (
+      <select 
+      name="ordem"
+      value={props.ordem}
+      onChange={props.upDateOrdem}>
+
+<option value={1}>Crescente</option> 
+<option value={2}>Decrescente</option> 
+        {/* {props.opcoes.map(opcao => (
           <option value={opcao} > {opcao}</option>
-        ))}
+        ))} */}
       </select>
     </ContainerFiltro>
   )
