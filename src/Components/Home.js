@@ -1,42 +1,103 @@
 import React from "react";
 import styled from "styled-components";
-import Filtros from "./Filtros"
-import CardProduto from "./CardProduto"
-
+import Filtros from "./Filtros";
+import CardProduto from "./CardProduto";
+import barbieAstronauta from "../barbie-astronauta.jpg"
+import estacaoEspacial from "../estacao-espacial.jpeg"
+import onibusEspacial from "../onibus-espacial.jpg"
+import ursinhoAstronauta from "../ursinho-astronauta.jpg"
+import camiseta1 from "../camiseta1.jpg"
+import camiseta3 from "../camiseta3.jpg"
+import camiseta4 from "../camiseta4.jpg"
+import macacaoAstronauta from "../macacao-astronauta.jpeg"
+import capaceteAstronauta from "../capacete-astronauta.jpg"
+import kitAstronauta from "../kit-astronauta.jpg"
 
 const listaDeProdutos = [
+  //brinquedos
   {
     id: 1,
-    name: "Foguete da Missão Apollo 11",
-    value: 10000.0,
-    imageUrl: "https://picsum.photos/200/200",
+    name: "Barbie Astronauta",
+    value: 99.99 ,
+    imageUrl: barbieAstronauta,
+    categoria: "Brinquedos com tema espacial"
   },
 
   {
     id: 2,
-    name: "Foguete da Missão Apollo 15",
-    value: 20000.0,
-    imageUrl: "https://picsum.photos/200/200",
+    name: "Estação Espacial",
+    value: 200.10,
+    imageUrl: estacaoEspacial,
+    categoria: "Brinquedos com tema espacial"
   },
   {
-    id: 2,
-    name: "Foguete da Missão Apollo 15",
-    value: 20000.0,
-    imageUrl: "https://picsum.photos/200/200",
+    id: 3,
+    name: "Ônibus Espacial",
+    value: 2000.10,
+    imageUrl: onibusEspacial,
+    categoria: "Brinquedos com tema espacial"
   },
   {
-    id: 2,
-    name: "Foguete da Missão Apollo 15",
+    id: 4,
+    name: "Ursinho Astronauta",
     value: 20000.0,
-    imageUrl: "https://picsum.photos/200/200",
-  }
+    imageUrl: ursinhoAstronauta,
+    categoria: "Brinquedos com tema espacial"
+  },
+  //camisetas com estampa
+  {
+    id: 5,
+    name: "Camiseta estampa astronauta",
+    value: 300.50,
+    imageUrl: camiseta1,
+    categoria: "Camisetas com estampas divertidas do espaço"
+  },
+  {
+    id: 6,
+    name: "Camiseta estampa nasa",
+    value: 90.50,
+    imageUrl: camiseta3,
+    categoria: "Camisetas com estampas divertidas do espaço"
+  },
+  {
+    id: 7,
+    name: "Camiseta estampa balões planetas",
+    value: 100.50,
+    imageUrl: camiseta4,
+    categoria: "Camisetas com estampas divertidas do espaço"
+  },
+
+  //roupas espaciais
+  {
+    id: 8,
+    name: "Camiseta estampa balões planetas",
+    value: 100.50,
+    imageUrl: macacaoAstronauta,
+    categoria: "Roupas espaciais"
+  },
+
+  {
+    id: 8,
+    name: "Capacete de astronauta",
+    value: 100.50,
+    imageUrl: capaceteAstronauta,
+    categoria: "Roupas espaciais"
+  },
+
+  {
+    id: 9,
+    name: "Kit de Astronauta",
+    value: 230.50,
+    imageUrl: kitAstronauta,
+    categoria: "Roupas espaciais"
+  },
+
 
 ]
 
 
 const BarraInformacoes = styled.div` 
 display: flex;
-background-color: pink;
 justify-content: space-around;
 `
 const ContainerHome = styled.div` 
@@ -61,6 +122,12 @@ class Home extends React.Component {
 
   state={
     produtos: listaDeProdutos,
+    ordem: 1
+  }
+
+
+  upDateOrdem = (event) => {
+    this.setState({ordem: event.target.value})
   }
 
   render() {
@@ -80,10 +147,6 @@ class Home extends React.Component {
     <p>Quantidade de produtos: {listaDeProdutos.length}</p>
           <Filtros
             descricao={"Ordenação"}
-            opcoes={[
-              "Crescente",
-              "Decrescente"
-            ]}
           />
         </BarraInformacoes>
 
