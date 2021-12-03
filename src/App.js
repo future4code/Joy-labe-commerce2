@@ -1,131 +1,3 @@
-// import styled from 'styled-components'
-// import CheckBox from 'react'
-
-// class Filtro extends React.Component {
-
-//   state = {
-//     listaDePodutos : [ 
-//     { 
-//       id: 1,
-//       name: "Foguete da Missão Apollo 11",
-//       categoria: " camisa e estampa",
-//       valor: 10000.0,
-//       imageUrl: "https://picsum.photos/200/200"
-//     },
-//     { 
-//       valorInputId: "",
-//       valorInputName: "",
-//       valorInputCategoria: "",
-//       valorInputValue: ""
-
-//     }
-//   ]
-// }
-
-
-// adicionaDados = () => {
-//   const novosProdutos = {
-
-//            nome: this.state.valorInputId,
-//            idade: this.state.valorInputName,
-//            email: this.state.valorInputCategoria,
-//            valores: this.state.valorInputValue
-// }
-
-
-// const novosProdutosAdicionados = [ ...this.state.listaDePodutos, novosProdutos];
-// this.setState({listaDePodutos : novosProdutosAdicionados})
-
-
-
-
-// const [users, setUsers] = useState ([])
-// useEffect(() => {
-
-// setUsers(listaDePodutos);
-// } ,[]);
-// }
-
-
-// mudaId= (event) => {
-//   this.setState({ valorInputId: event.target.value });
-// };
-
-// mudaName = (event) => {
-//   this.setState({ valorInputName: event.target.value });
-// };
-
-// mudaCategoria = (event) => {
-//   this.setState({ valorInputCategoria: event.target.value });
-// };
-
-// mudaValue = (event) => {
-//   this.setState({ valorInputValue: event.target.value });
-// };
-
-
-// render() {
-
-
-
-//     return (
-
-//       <div>
-//           <form>
-
-//           <label>nome: </label>
-//           <input type = "text" value={this.state.name} onChange={this.mudaName} />
-
-
-
-//           <label>Categoria
-//           <select value={this.state.categoria} onChange={this.mudaCategoria} >
-//           <option value = "Todas as categorias">Todas as categorias </option>
-//           <option value="Roupas espaciais"> Roupas espaciais </option>
-//           <option value = "Camisetas com estampas divertidas do espaço">Camisetas com estampas divertidas do espaço </option>
-//           <option value = "Brinquedos com tema espacial">Brinquedos com tema espacial</option>
-
-//       </select>  
-// </label>
-// {users.map((user) =>(
-// <div className = "form- check">
-
-// <input type = "checkbox"  className= "form- check -input" /> 
-
-
-// </div>
-
-
-// ))}
-
-
-
-
-
-
-
-//        <button onClick={this.enviar}>Enviar </button> 
-
-
-//       </form>
-
-// import React from 'react';
-// import Home from './Components/Home'
-
-// function App() {
-//   return (
-//     <div>
-
-//       <Home></Home>        
-//      </div>
-//   );
-// }
-
-
-
-// export default Filtro;
-
-
 import React from "react";
 import styled from "styled-components";
 import CardProduto from "./Components/CardProduto";
@@ -226,12 +98,12 @@ const BarraInformacoes = styled.div`
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  height: 250px;
-  flex-direction: column;
+  align-items: center;  
+  font-size: 1.25em;
 `;
 const ContainerHome = styled.div`
   /* height:100vh; */
-  width: 60%;
+  width: 90%;
   margin: auto;
 `;
 
@@ -245,7 +117,45 @@ const ContainerProdutos = styled.div`
   margin: 10px;
 `;
 
-class Home extends React.Component {
+const ContainerFiltros = styled.div` 
+display: flex;
+flex-direction: column;
+padding: 20px;
+`
+
+const Container = styled.div` 
+width: 100%;
+display: grid;
+grid-template-columns: 1fr 3fr 1fr;
+
+`
+
+const CampoOrdenacao = styled.div` 
+display: flex;
+justify-content: space-between;
+width: 40%;
+`
+
+const CampoInput = styled.div` 
+display: flex;
+flex-direction: column;
+height: 90px;
+justify-content: space-around;
+margin: 30px;
+font-size: 1.25em;
+
+`
+
+const Input = styled.input ` 
+padding: 10px;
+border-radius: 5px;
+border: red;
+margin-top: 10px;
+background-color: #D0D3D9;
+color: black;
+`
+
+class App extends React.Component {
   state = {
     produtos: listaDeProdutos,
     query: "",
@@ -304,7 +214,6 @@ class Home extends React.Component {
             return this.state.order * produtoAtual.name.localeCompare(proximoProduto.name)
           default:
             return this.state.order * produtoAtual.valor - proximoProduto.valor
-
         }
       })
       .map((produto) => {
@@ -318,70 +227,97 @@ class Home extends React.Component {
         );
       });
     return (
-      <ContainerHome>
-        <BarraInformacoes>
-          <p>Quantidade de produtos: {componentesProdutos.length}</p>
-          <input
-            placeholder="Pesquisa"
-            value={this.state.query}
-            onChange={this.upDateQuery}
-          />
 
-          <input
-            placeholder="Preço max."
-            value={this.state.precoMaximo}
-            onChange={this.upDatePrecoMaximo}
-          />
+      <Container>
+        <ContainerFiltros>
+          <h1>Busca</h1>
 
-          <input
-            placeholder="Preço min."
-            value={this.state.precoMinimo}
-            onChange={this.upDatePrecoMinimo}
-          />
+          <CampoInput>
+            <label>Nome do produto</label>
+            <Input
+              placeholder="Pesquisa"
+              value={this.state.query}
+              onChange={this.upDateQuery}
+            />
+          </CampoInput>
 
-          <label>Categoria</label>
-          <select
-            name="classificacaoCategoria"
-            value={this.state.classificacaoCategoria}
-            onChange={this.upDateCategoria}>
-            <option value="Todas as categorias">Todas as categorias </option>
-            <option value="Roupas espaciais"> Roupas espaciais </option>
-            <option value="Camisetas com estampas divertidas do espaço">Camisetas com estampas divertidas do espaço </option>
-            <option value="Brinquedos com tema espacial">Brinquedos com tema espacial</option>
+          <CampoInput>
+            <label>Preço do produto</label>
+            <Input
+              placeholder="Preço max."
+              value={this.state.precoMaximo}
+              onChange={this.upDatePrecoMaximo}
+            />
 
-          </select>
+            <Input
+              placeholder="Preço min."
+              value={this.state.precoMinimo}
+              onChange={this.upDatePrecoMinimo}
+            />
+          </CampoInput>
 
+          <CampoInput>
+            <label>Categoria</label>
+            <select
+              name="classificacaoCategoria"
+              value={this.state.classificacaoCategoria}
+              onChange={this.upDateCategoria}>
+              <option value="Todas as categorias">Todas as categorias </option>
+              <option value="Roupas espaciais"> Roupas espaciais </option>
+              <option value="Camisetas com estampas divertidas do espaço">Camisetas com estampas divertidas do espaço </option>
+              <option value="Brinquedos com tema espacial">Brinquedos com tema espacial</option>
 
-          <label>Ordenar por</label>
-
-          <select
-            name="sortingParamater"
-            value={this.state.sortingParamater}
-            onChange={this.upDateSortingParamater}>
-            <option value="name">Produto</option>
-            <option value="valor"> Preço </option>
-
-          </select>
-
-          <select
-            name="order"
-            value={this.state.order}
-            onChange={this.upDateOrder}>
-            <option value={1}>Crescente </option>
-            <option value={-1}> Decrescente </option>
+            </select>
+          </CampoInput>
 
 
-          </select>
 
-          {/* <Filtros
+
+        </ContainerFiltros>
+        <ContainerHome>
+          <BarraInformacoes>
+            <p>Quantidade de produtos: {componentesProdutos.length}</p>
+
+            <CampoOrdenacao>
+              <label>Ordenar por</label>
+
+              <select
+                name="sortingParamater"
+                value={this.state.sortingParamater}
+                onChange={this.upDateSortingParamater}>
+                <option value="name">Produto</option>
+                <option value="valor"> Preço </option>
+
+              </select>
+
+              <select
+                name="order"
+                value={this.state.order}
+                onChange={this.upDateOrder}>
+                <option value={1}>Crescente </option>
+                <option value={-1}> Decrescente </option>
+
+
+              </select>
+
+            </CampoOrdenacao>
+
+
+            {/* <Filtros
             descricao={"Ordenação"}
           /> */}
-        </BarraInformacoes>
+          </BarraInformacoes>
 
-        <ContainerProdutos>{componentesProdutos}</ContainerProdutos>
-      </ContainerHome>
+          <ContainerProdutos>{componentesProdutos}</ContainerProdutos>
+        </ContainerHome>
+        <ContainerFiltros>
+          <h1>Carrinho</h1>
+
+        </ContainerFiltros>
+
+      </Container>
     );
   }
 }
 
-export default Home;
+export default App;
