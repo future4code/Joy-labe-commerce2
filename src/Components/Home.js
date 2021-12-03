@@ -18,7 +18,7 @@ const listaDeProdutos = [
   {
     id: 1,
     name: "Barbie Astronauta",
-    value: 99.99 ,
+    value: 99.99,
     imageUrl: barbieAstronauta,
     categoria: "Brinquedos com tema espacial"
   },
@@ -70,14 +70,14 @@ const listaDeProdutos = [
   //roupas espaciais
   {
     id: 8,
-    name: "Camiseta estampa balões planetas",
+    name: "Macacão astronauta",
     value: 100.50,
     imageUrl: macacaoAstronauta,
     categoria: "Roupas espaciais"
   },
 
   {
-    id: 8,
+    id: 9,
     name: "Capacete de astronauta",
     value: 100.50,
     imageUrl: capaceteAstronauta,
@@ -85,7 +85,7 @@ const listaDeProdutos = [
   },
 
   {
-    id: 9,
+    id: 10,
     name: "Kit de Astronauta",
     value: 230.50,
     imageUrl: kitAstronauta,
@@ -120,31 +120,31 @@ margin: 10px;
 
 class Home extends React.Component {
 
-  state={
+  state = {
     produtos: listaDeProdutos,
     ordem: 1
   }
 
 
   upDateOrdem = (event) => {
-    this.setState({ordem: event.target.value})
+    this.setState({ ordem: event.target.value })
   }
 
   render() {
     const componentesProdutos = this.state.produtos.map((produto) => {
       return (
         <CardProduto
-            imageUrl={produto.imageUrl}
-            descricaoProduto={produto.name}
-            valorProduto={produto.value}
-          />
+          imageUrl={produto.imageUrl}
+          descricaoProduto={produto.name}
+          valorProduto={produto.value}
+        />
       )
     })
     return (
 
       <ContainerHome>
         <BarraInformacoes>
-    <p>Quantidade de produtos: {listaDeProdutos.length}</p>
+          <p>Quantidade de produtos: {listaDeProdutos.length}</p>
           <Filtros
             descricao={"Ordenação"}
           />
