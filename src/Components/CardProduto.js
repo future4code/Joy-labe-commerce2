@@ -11,9 +11,10 @@ const CardDoProduto = styled.div `
 display: flex;
 flex-direction: column;
 justify-content: center;
-background-color: yellow;
+background-color: #D0D3D9;
 text-align: center;
-border: 1px solid black;
+border: 1px solid gray;
+border-radius: 5px;
 `
 
 const BotaoAdicionar = styled.button ` 
@@ -30,9 +31,9 @@ export default function CardProduto(props) {
   return (
     <CardDoProduto>
             <ImagemCard src={props.imageUrl}/>
-            <TextoProduto>{props.descricaoProduto}</TextoProduto>
-            <TextoProduto>{props.valorProduto}</TextoProduto>
-            <BotaoAdicionar>Adicionar ao carrinho</BotaoAdicionar>
+            <TextoProduto>{props.name}</TextoProduto>
+            <TextoProduto>R$ {props.valor}</TextoProduto>
+            <BotaoAdicionar onClick={() => props.adicionarCarrinho(props)}>Adicionar ao carrinho</BotaoAdicionar>
     </CardDoProduto>
 
   )

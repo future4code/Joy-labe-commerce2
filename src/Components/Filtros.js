@@ -1,31 +1,45 @@
-import React from "react"
-import styled from "styled-components"
+// import CardProduto from "./CardProduto"
 
-const ContainerFiltro = styled.div ` 
-display: flex;
-justify-content: space-around;
-align-items: center;
-width: 190px;
-`
+// export default function Filtros(props) {
 
+//   return (
 
-export default function Filtros(props) {
+//     props.produtos
+//       .filter((produto) => {
+//         return produto.name
+//           .toLowerCase()
+//           .includes(props.query.toLocaleLowerCase());
+//       })
+//       .filter((produto) => {
+//         return props.precoMinimo === "" || produto.valor >= props.precoMinimo
+//       })
+//       .filter((produto) => {
+//         return props.precoMaximo === "" || produto.valor <= props.precoMaximo
+//       })
+//       .filter((produto) => {
+//         return props.classificacaoCategoria === "Todas as categorias" || produto.categoria
+//           .includes(props.classificacaoCategoria)
+//       })
+//       .sort((produtoAtual, proximoProduto) => {
+//         switch (props.sortingParamater) {
+//           case "name":
+//             return props.order * produtoAtual.name.localeCompare(proximoProduto.name)
+//           default:
+//             return props.order * produtoAtual.valor - proximoProduto.valor
+//         }
+//       })
+//       .map((produto) => {
+//         return (
+//           <CardProduto
+//             key={produto.id}
+//             imageUrl={produto.imageUrl}
+//             name={produto.name}
+//             valor={produto.valor}
+//             adicionarCarrinho={this.adicionarCarrinho}
+//           />
+//         );
+//       })
+   
+//   )
 
-  return (
-    <ContainerFiltro>
-      <p>{props.descricao}</p>
-      <select 
-      name="ordem"
-      value={props.ordem}
-      onChange={props.upDateOrdem}>
-
-<option value={1}>Crescente</option> 
-<option value={2}>Decrescente</option> 
-        {/* {props.opcoes.map(opcao => (
-          <option value={opcao} > {opcao}</option>
-        ))} */}
-      </select>
-    </ContainerFiltro>
-  )
-
-}
+// }
