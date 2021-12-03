@@ -146,13 +146,18 @@ font-size: 1.25em;
 
 `
 
-const Input = styled.input ` 
+const Input = styled.input` 
 padding: 10px;
 border-radius: 5px;
 border: red;
 margin-top: 10px;
 background-color: #D0D3D9;
 color: black;
+`
+
+const ContainerCarrinho = styled.div` 
+display: flex;
+flex-direction: column;
 `
 
 class App extends React.Component {
@@ -163,9 +168,17 @@ class App extends React.Component {
     precoMaximo: "",
     classificacaoCategoria: "",
     order: 1,
-    sortingParamater: "name"
+    sortingParamater: "name",
+    carrinho: [],
 
   };
+
+  adicionarCarrinho = (produto) => {
+    console.log(produto)
+    const produtosDoCarrinho = [...this.state.carrinho, produto]
+
+    this.setState({ carrinho: produtosDoCarrinho })
+  }
 
   upDateQuery = (event) => {
     this.setState({ query: event.target.value });
@@ -221,11 +234,25 @@ class App extends React.Component {
           <CardProduto
             key={produto.id}
             imageUrl={produto.imageUrl}
-            descricaoProduto={produto.name}
-            valorProduto={produto.valor}
+            name={produto.name}
+            valor={produto.valor}
+            adicionarCarrinho={this.adicionarCarrinho}
           />
         );
       });
+
+
+    const componenteCarrinho = this.state.carrinho.map((produto) => {
+      return (
+        <div key={produto.name}>
+          <p>
+            {produto.name}
+            {produto.valor}
+          </p>
+        </div>
+      )
+    })
+
     return (
 
       <Container>
@@ -303,17 +330,18 @@ class App extends React.Component {
             </CampoOrdenacao>
 
 
-            {/* <Filtros
-            descricao={"Ordenação"}
-          /> */}
+
           </BarraInformacoes>
 
           <ContainerProdutos>{componentesProdutos}</ContainerProdutos>
         </ContainerHome>
-        <ContainerFiltros>
+
+        <ContainerCarrinho>
           <h1>Carrinho</h1>
 
-        </ContainerFiltros>
+          {componenteCarrinho}
+
+        </ContainerCarrinho>
 
       </Container>
     );
