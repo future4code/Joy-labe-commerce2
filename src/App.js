@@ -19,7 +19,8 @@ const listaDeProdutos = [
     name: "Barbie Astronauta",
     valor: 99.99,
     imageUrl: barbieAstronauta,
-    categoria: "Brinquedos com tema espacial"
+    categoria: "Brinquedos com tema espacial",
+    quantidade: 20
   },
 
   {
@@ -27,21 +28,24 @@ const listaDeProdutos = [
     name: "Estação Espacial",
     valor: 200.10,
     imageUrl: estacaoEspacial,
-    categoria: "Brinquedos com tema espacial"
+    categoria: "Brinquedos com tema espacial",
+    quantidade: 0
   },
   {
     id: 3,
     name: "Ônibus Espacial",
     valor: 200.60,
     imageUrl: onibusEspacial,
-    categoria: "Brinquedos com tema espacial"
+    categoria: "Brinquedos com tema espacial",
+    quantidade: 0
   },
   {
     id: 4,
     name: "Ursinho Astronauta",
     valor: 20000,
     imageUrl: ursinhoAstronauta,
-    categoria: "Brinquedos com tema espacial"
+    categoria: "Brinquedos com tema espacial",
+    quantidade: 0
   },
   //camisetas com estampa
   {
@@ -49,21 +53,24 @@ const listaDeProdutos = [
     name: "Camiseta estampa astronauta",
     valor: 300.50,
     imageUrl: camiseta1,
-    categoria: "Camisetas com estampas divertidas do espaço"
+    categoria: "Camisetas com estampas divertidas do espaço",
+    quantidade: 0
   },
   {
     id: 6,
     name: "Camiseta estampa nasa",
     valor: 90.50,
     imageUrl: camiseta3,
-    categoria: "Camisetas com estampas divertidas do espaço"
+    categoria: "Camisetas com estampas divertidas do espaço",
+    quantidade: 0
   },
   {
     id: 7,
     name: "Camiseta estampa balões planetas",
     valor: 100.50,
     imageUrl: camiseta4,
-    categoria: "Camisetas com estampas divertidas do espaço"
+    categoria: "Camisetas com estampas divertidas do espaço",
+    quantidade: 0
   },
 
   //roupas espaciais
@@ -72,7 +79,8 @@ const listaDeProdutos = [
     name: "Macacão Astronauta",
     valor: 100.50,
     imageUrl: macacaoAstronauta,
-    categoria: "Roupas espaciais"
+    categoria: "Roupas espaciais",
+    quantidade: 0
   },
 
   {
@@ -80,7 +88,8 @@ const listaDeProdutos = [
     name: "Capacete de astronauta",
     valor: 100.50,
     imageUrl: capaceteAstronauta,
-    categoria: "Roupas espaciais"
+    categoria: "Roupas espaciais",
+    quantidade: 0
   },
 
   {
@@ -88,7 +97,8 @@ const listaDeProdutos = [
     name: "Kit de Astronauta",
     valor: 230.50,
     imageUrl: kitAstronauta,
-    categoria: "Roupas espaciais"
+    categoria: "Roupas espaciais",
+    quantidade: 0
   },
 
 
@@ -170,14 +180,44 @@ class App extends React.Component {
     order: 1,
     sortingParamater: "name",
     carrinho: [],
+    quantidadeAtual: 0
 
   };
 
+  // Adiconar item ao carrinho
   adicionarCarrinho = (produto) => {
-    console.log(produto)
-    const produtosDoCarrinho = [...this.state.carrinho, produto]
 
+    const produtosDoCarrinho = [...this.state.carrinho]
+    let novoProduto = {...produto}
+
+    const contem = produtosDoCarrinho.findIndex(item=> item.name === produto.name)
+    
+    if(contem >= 0){
+      novoProduto = produtosDoCarrinho[contem]
+      novoProduto.quantidade++
+      produtosDoCarrinho[contem] = novoProduto
+    }else{
+      novoProduto.quantidade = 1
+      produtosDoCarrinho.push(novoProduto)
+    }
+    
     this.setState({ carrinho: produtosDoCarrinho })
+  
+  }
+
+  // Remover cada item do carrinho
+  removeItem = (name) => {
+    const listaFiltrada = this.state.carrinho.filter((produto) => produto.name !== name);
+    this.setState({carrinho: listaFiltrada });
+  };
+
+  // Remover todos os itens do carrinho
+  limparCarrinho = () =>{
+    const novaListaDeprodutos = this.state.carrinho.filter((produto)=>{
+      return produto === produto.id 
+    })
+    
+    this.setState({carrinho: novaListaDeprodutos})
   }
 
   upDateQuery = (event) => {
@@ -236,6 +276,7 @@ class App extends React.Component {
             imageUrl={produto.imageUrl}
             name={produto.name}
             valor={produto.valor}
+            quantidade={produto.quantidade}
             adicionarCarrinho={this.adicionarCarrinho}
           />
         );
@@ -246,8 +287,9 @@ class App extends React.Component {
       return (
         <div key={produto.name}>
           <p>
+            {produto.quantidade}
             {produto.name}
-            {produto.valor}
+            <button onClick={() => this.removeItem(produto.name)}>Remover</button>
           </p>
         </div>
       )
@@ -340,7 +382,7 @@ class App extends React.Component {
           <h1>Carrinho</h1>
 
           {componenteCarrinho}
-
+          <button onClick={this.limparCarrinho}>Limpar Carrinho</button>
         </ContainerCarrinho>
 
       </Container>
