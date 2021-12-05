@@ -1,109 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import CardProduto from "./Components/CardProduto";
-import barbieAstronauta from "./barbie-astronauta.jpg"
-import estacaoEspacial from "./estacao-espacial.jpeg"
-import onibusEspacial from "./onibus-espacial.jpg"
-import ursinhoAstronauta from "./ursinho-astronauta.jpg"
-import camiseta1 from "./camiseta1.jpg"
-import camiseta3 from "./camiseta3.jpg"
-import camiseta4 from "./camiseta4.jpg"
-import macacaoAstronauta from "./macacao-astronauta.jpeg"
-import capaceteAstronauta from "./capacete-astronauta.jpg"
-import kitAstronauta from "./kit-astronauta.jpg"
+import { listaDeProdutos } from "./Components/ListaDeProdutos";
+import CarrinhoDeCompras from "./shopping-cart.svg";
+import IconeLixeira from "./iconeLixeira.svg"
 
-const listaDeProdutos = [
-  //brinquedos
-  {
-    id: 1,
-    name: "Barbie Astronauta",
-    valor: 99.99,
-    imageUrl: barbieAstronauta,
-    categoria: "Brinquedos com tema espacial",
-    quantidade: 20
-  },
-
-  {
-    id: 2,
-    name: "Estação Espacial",
-    valor: 200.10,
-    imageUrl: estacaoEspacial,
-    categoria: "Brinquedos com tema espacial",
-    quantidade: 0
-  },
-  {
-    id: 3,
-    name: "Ônibus Espacial",
-    valor: 200.60,
-    imageUrl: onibusEspacial,
-    categoria: "Brinquedos com tema espacial",
-    quantidade: 0
-  },
-  {
-    id: 4,
-    name: "Ursinho Astronauta",
-    valor: 20000,
-    imageUrl: ursinhoAstronauta,
-    categoria: "Brinquedos com tema espacial",
-    quantidade: 0
-  },
-  //camisetas com estampa
-  {
-    id: 5,
-    name: "Camiseta estampa astronauta",
-    valor: 300.50,
-    imageUrl: camiseta1,
-    categoria: "Camisetas com estampas divertidas do espaço",
-    quantidade: 0
-  },
-  {
-    id: 6,
-    name: "Camiseta estampa nasa",
-    valor: 90.50,
-    imageUrl: camiseta3,
-    categoria: "Camisetas com estampas divertidas do espaço",
-    quantidade: 0
-  },
-  {
-    id: 7,
-    name: "Camiseta estampa balões planetas",
-    valor: 100.50,
-    imageUrl: camiseta4,
-    categoria: "Camisetas com estampas divertidas do espaço",
-    quantidade: 0
-  },
-
-  //roupas espaciais
-  {
-    id: 8,
-    name: "Macacão Astronauta",
-    valor: 100.50,
-    imageUrl: macacaoAstronauta,
-    categoria: "Roupas espaciais",
-    quantidade: 0
-  },
-
-  {
-    id: 9,
-    name: "Capacete de astronauta",
-    valor: 100.50,
-    imageUrl: capaceteAstronauta,
-    categoria: "Roupas espaciais",
-    quantidade: 0
-  },
-
-  {
-    id: 10,
-    name: "Kit de Astronauta",
-    valor: 230.50,
-    imageUrl: kitAstronauta,
-    categoria: "Roupas espaciais",
-    quantidade: 0
-  },
-
-
-]
-
+//============================ Estilização ============================
 const BarraInformacoes = styled.div`
   display: flex;
   justify-content: space-around;
@@ -116,7 +18,6 @@ const ContainerHome = styled.div`
   width: 90%;
   margin: auto;
 `;
-
 const ContainerProdutos = styled.div`
   flex-grow: 1;
   display: grid;
@@ -126,26 +27,23 @@ const ContainerProdutos = styled.div`
   column-gap: 10px;
   margin: 10px;
 `;
-
 const ContainerFiltros = styled.div` 
 display: flex;
 flex-direction: column;
-padding: 20px;
+padding: 1rem;
+width: 250px;
 `
-
 const Container = styled.div` 
 width: 100%;
 display: grid;
 grid-template-columns: 1fr 3fr 1fr;
 
 `
-
 const CampoOrdenacao = styled.div` 
 display: flex;
 justify-content: space-between;
 width: 40%;
 `
-
 const CampoInput = styled.div` 
 display: flex;
 flex-direction: column;
@@ -155,7 +53,6 @@ margin: 30px;
 font-size: 1.25em;
 
 `
-
 const Input = styled.input` 
 padding: 10px;
 border-radius: 5px;
@@ -164,12 +61,84 @@ margin-top: 10px;
 background-color: #D0D3D9;
 color: black;
 `
-
 const ContainerCarrinho = styled.div` 
 display: flex;
+justify-self: flex-end;
 flex-direction: column;
+width: 370px;
+height: 100vh;
+box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+position:fixed;
 `
-
+const ContainerItemCarrinho = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  height: 80px;
+`
+const ContainerTodosProdutos = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow-y: auto;
+`
+const ContainerValorTotal = styled.div`
+  display: flex;
+  justify-content: space-between;
+  border: none;
+  background-color: #2cbc63;
+  padding: 0 1rem;
+  font-weight: bold;
+`
+const ContainerHeaderCarrinho = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  border: none;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+`
+const ContainerPrecoItem = styled.p`
+  font-weight: bold;
+  text-align: justify;
+  padding-right: 0.5rem;
+  width:30%;
+`
+const ContainerDescricaoItem = styled.p`
+  display:flex;
+  width: 55%;
+  text-align: left;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+`
+const ContainerImgProdCarrinho = styled.div`
+  width:15%;
+`
+const ImgProdCarrinho = styled.img`
+  height: 50px;
+`
+const ContainerDescItemCarrinho = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-grow: 1;
+`
+const BotaoLimparCarrinho = styled.button`
+  background-color: white;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  height: 50px;
+  width: 100%;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
+`
+const BotaoDeleteItem = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+`
 class App extends React.Component {
   state = {
     produtos: listaDeProdutos,
@@ -179,12 +148,14 @@ class App extends React.Component {
     classificacaoCategoria: "",
     order: 1,
     sortingParamater: "name",
-    carrinho: [],
-    quantidadeAtual: 0
-
+    carrinho: []
   };
 
-  // Adiconar item ao carrinho
+  componentDidMount(){
+    this.pegarProdutosAdicionados();
+  }
+
+  // Adicionar item ao carrinho
   adicionarCarrinho = (produto) => {
 
     const produtosDoCarrinho = [...this.state.carrinho]
@@ -200,14 +171,18 @@ class App extends React.Component {
       novoProduto.quantidade = 1
       produtosDoCarrinho.push(novoProduto)
     }
-    
+
+    localStorage.setItem("produtosAdicionados", JSON.stringify(produtosDoCarrinho))
+
     this.setState({ carrinho: produtosDoCarrinho })
-  
   }
 
   // Remover cada item do carrinho
   removeItem = (name) => {
     const listaFiltrada = this.state.carrinho.filter((produto) => produto.name !== name);
+
+    localStorage.setItem("produtosAdicionados", JSON.stringify(listaFiltrada))
+
     this.setState({carrinho: listaFiltrada });
   };
 
@@ -216,8 +191,14 @@ class App extends React.Component {
     const novaListaDeprodutos = this.state.carrinho.filter((produto)=>{
       return produto === produto.id 
     })
-    
+    localStorage.setItem("produtosAdicionados", JSON.stringify(novaListaDeprodutos))
+
     this.setState({carrinho: novaListaDeprodutos})
+  }
+
+  pegarProdutosAdicionados = () =>{
+    const produtosAdicionados = JSON.parse(localStorage.getItem("produtosAdicionados"))
+    this.setState({carrinho: produtosAdicionados})
   }
 
   upDateQuery = (event) => {
@@ -276,7 +257,6 @@ class App extends React.Component {
             imageUrl={produto.imageUrl}
             name={produto.name}
             valor={produto.valor}
-            quantidade={produto.quantidade}
             adicionarCarrinho={this.adicionarCarrinho}
           />
         );
@@ -285,107 +265,120 @@ class App extends React.Component {
 
     const componenteCarrinho = this.state.carrinho.map((produto) => {
       return (
-        <div key={produto.name}>
-          <p>
-            {produto.quantidade}
-            {produto.name}
-            <button onClick={() => this.removeItem(produto.name)}>Remover</button>
-          </p>
-        </div>
+        <ContainerItemCarrinho key={produto.name}>
+          <ContainerImgProdCarrinho>
+            <ImgProdCarrinho src={produto.imageUrl}/>
+          </ContainerImgProdCarrinho>
+          <ContainerDescItemCarrinho>
+            <p>{produto.quantidade}x</p>
+            <ContainerDescricaoItem>{produto.name}</ContainerDescricaoItem>          
+            <ContainerPrecoItem>R$ {produto.valor.toFixed(2)}</ContainerPrecoItem>          
+            <BotaoDeleteItem onClick={() => this.removeItem(produto.name)}><img src={IconeLixeira}/></BotaoDeleteItem>        
+          </ContainerDescItemCarrinho>
+        </ContainerItemCarrinho>
       )
     })
+    
+    // Calculo valor total dos produtos
+    const valorTotal = this.state.carrinho.reduce((acumulador, item) =>acumulador + item.valor * item.quantidade, 0)
 
     return (
+        <Container>
+          <ContainerFiltros>
+            <h1>Busca</h1>
 
-      <Container>
-        <ContainerFiltros>
-          <h1>Busca</h1>
+            <CampoInput>
+              <label>Nome do produto</label>
+              <Input
+                placeholder="Pesquisa"
+                value={this.state.query}
+                onChange={this.upDateQuery}
+              />
+            </CampoInput>
 
-          <CampoInput>
-            <label>Nome do produto</label>
-            <Input
-              placeholder="Pesquisa"
-              value={this.state.query}
-              onChange={this.upDateQuery}
-            />
-          </CampoInput>
+            <CampoInput>
+              <label>Preço do produto</label>
+              <Input
+                placeholder="Preço max."
+                value={this.state.precoMaximo}
+                onChange={this.upDatePrecoMaximo}
+              />
 
-          <CampoInput>
-            <label>Preço do produto</label>
-            <Input
-              placeholder="Preço max."
-              value={this.state.precoMaximo}
-              onChange={this.upDatePrecoMaximo}
-            />
+              <Input
+                placeholder="Preço min."
+                value={this.state.precoMinimo}
+                onChange={this.upDatePrecoMinimo}
+              />
+            </CampoInput>
 
-            <Input
-              placeholder="Preço min."
-              value={this.state.precoMinimo}
-              onChange={this.upDatePrecoMinimo}
-            />
-          </CampoInput>
-
-          <CampoInput>
-            <label>Categoria</label>
-            <select
-              name="classificacaoCategoria"
-              value={this.state.classificacaoCategoria}
-              onChange={this.upDateCategoria}>
-              <option value="Todas as categorias">Todas as categorias </option>
-              <option value="Roupas espaciais"> Roupas espaciais </option>
-              <option value="Camisetas com estampas divertidas do espaço">Camisetas com estampas divertidas do espaço </option>
-              <option value="Brinquedos com tema espacial">Brinquedos com tema espacial</option>
-
-            </select>
-          </CampoInput>
-
-
-
-
-        </ContainerFiltros>
-        <ContainerHome>
-          <BarraInformacoes>
-            <p>Quantidade de produtos: {componentesProdutos.length}</p>
-
-            <CampoOrdenacao>
-              <label>Ordenar por</label>
-
+            <CampoInput>
+              <label>Categoria</label>
               <select
-                name="sortingParamater"
-                value={this.state.sortingParamater}
-                onChange={this.upDateSortingParamater}>
-                <option value="name">Produto</option>
-                <option value="valor"> Preço </option>
+                name="classificacaoCategoria"
+                value={this.state.classificacaoCategoria}
+                onChange={this.upDateCategoria}>
+                <option value="Todas as categorias">Todas as categorias </option>
+                <option value="Roupas espaciais"> Roupas espaciais </option>
+                <option value="Camisetas com estampas divertidas do espaço">Camisetas com estampas divertidas do espaço </option>
+                <option value="Brinquedos com tema espacial">Brinquedos com tema espacial</option>
 
               </select>
-
-              <select
-                name="order"
-                value={this.state.order}
-                onChange={this.upDateOrder}>
-                <option value={1}>Crescente </option>
-                <option value={-1}> Decrescente </option>
-
-
-              </select>
-
-            </CampoOrdenacao>
+            </CampoInput>
 
 
 
-          </BarraInformacoes>
 
-          <ContainerProdutos>{componentesProdutos}</ContainerProdutos>
-        </ContainerHome>
+          </ContainerFiltros>
+          <ContainerHome>
+            <BarraInformacoes>
+              <p>Quantidade de produtos: {componentesProdutos.length}</p>
 
-        <ContainerCarrinho>
-          <h1>Carrinho</h1>
+              <CampoOrdenacao>
+                <label>Ordenar por</label>
 
-          {componenteCarrinho}
-          <button onClick={this.limparCarrinho}>Limpar Carrinho</button>
-        </ContainerCarrinho>
+                <select
+                  name="sortingParamater"
+                  value={this.state.sortingParamater}
+                  onChange={this.upDateSortingParamater}>
+                  <option value="name">Produto</option>
+                  <option value="valor"> Preço </option>
 
-      </Container>
+                </select>
+
+                <select
+                  name="order"
+                  value={this.state.order}
+                  onChange={this.upDateOrder}>
+                  <option value={1}>Crescente </option>
+                  <option value={-1}> Decrescente </option>
+
+
+                </select>
+
+              </CampoOrdenacao>
+            </BarraInformacoes>
+
+            <ContainerProdutos>{componentesProdutos}</ContainerProdutos>
+          </ContainerHome>
+
+          <ContainerCarrinho>
+            <ContainerHeaderCarrinho>
+              <h1>Carrinho</h1>
+              <img src={CarrinhoDeCompras} alt={"Icone Carrinho de compras"}/>
+            </ContainerHeaderCarrinho>
+            <ContainerTodosProdutos>
+              {componenteCarrinho}
+            </ContainerTodosProdutos>
+            <div>
+              <BotaoLimparCarrinho onClick={this.limparCarrinho}>Limpar carrinho</BotaoLimparCarrinho>
+              <ContainerValorTotal>
+                <p>Valor total:</p>
+                <p>R${valorTotal.toFixed(2)}</p>
+              </ContainerValorTotal>
+            </div>
+          </ContainerCarrinho>
+
+        </Container>
     );
   }
 }
