@@ -47,9 +47,9 @@ Desenvolvimento de uma e-commerce de itens espaciais  abrangendo linhas de produ
 </BR>
 </BR>
 
+Link do surge: exclusive-corn.surge.sh
 
-## 💻📱Versões:
--  mobile (Iphone 6/7/8) 
+## 💻Versão:
 - desktop (tela de 1280px de largura).
     
 
