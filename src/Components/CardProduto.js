@@ -32,8 +32,7 @@ export default function CardProduto(props) {
     <CardDoProduto>
             <ImagemCard src={props.imageUrl}/>
             <TextoProduto>{props.name}</TextoProduto>
-            <TextoProduto>R$ {props.valor}</TextoProduto>
-            <p>{props.quantidade}</p>           
+            <TextoProduto>R$ {props.valor}</TextoProduto>          
             <BotaoAdicionar onClick={() => props.adicionarCarrinho(props)}>Adicionar ao carrinho</BotaoAdicionar>
     </CardDoProduto>
 
