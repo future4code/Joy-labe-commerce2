@@ -148,12 +148,12 @@ class App extends React.Component {
     classificacaoCategoria: "",
     order: 1,
     sortingParamater: "name",
-    carrinho: []
+    carrinho: [],
   };
 
-  componentDidMount(){
-    this.pegarProdutosAdicionados();
-  }
+  // componentDidMount(){
+  //   this.pegarProdutosAdicionados();
+  // }
 
   // Adicionar item ao carrinho
   adicionarCarrinho = (produto) => {
@@ -172,7 +172,7 @@ class App extends React.Component {
       produtosDoCarrinho.push(novoProduto)
     }
 
-    localStorage.setItem("produtosAdicionados", JSON.stringify(produtosDoCarrinho))
+    // localStorage.setItem("produtosAdicionados", JSON.stringify(produtosDoCarrinho))
 
     this.setState({ carrinho: produtosDoCarrinho })
   }
@@ -181,7 +181,7 @@ class App extends React.Component {
   removeItem = (name) => {
     const listaFiltrada = this.state.carrinho.filter((produto) => produto.name !== name);
 
-    localStorage.setItem("produtosAdicionados", JSON.stringify(listaFiltrada))
+    // localStorage.setItem("produtosAdicionados", JSON.stringify(listaFiltrada))
 
     this.setState({carrinho: listaFiltrada });
   };
@@ -191,15 +191,15 @@ class App extends React.Component {
     const novaListaDeprodutos = this.state.carrinho.filter((produto)=>{
       return produto === produto.id 
     })
-    localStorage.setItem("produtosAdicionados", JSON.stringify(novaListaDeprodutos))
+    // localStorage.setItem("produtosAdicionados", JSON.stringify(novaListaDeprodutos))
 
     this.setState({carrinho: novaListaDeprodutos})
   }
 
-  pegarProdutosAdicionados = () =>{
-    const produtosAdicionados = JSON.parse(localStorage.getItem("produtosAdicionados"))
-    this.setState({carrinho: produtosAdicionados})
-  }
+  // pegarProdutosAdicionados = () =>{
+  //   const produtosAdicionados = JSON.parse(localStorage.getItem("produtosAdicionados"))
+  //   this.setState({carrinho: produtosAdicionados})
+  // }
 
   upDateQuery = (event) => {
     this.setState({ query: event.target.value });
@@ -273,7 +273,7 @@ class App extends React.Component {
             <p>{produto.quantidade}x</p>
             <ContainerDescricaoItem>{produto.name}</ContainerDescricaoItem>          
             <ContainerPrecoItem>R$ {produto.valor.toFixed(2)}</ContainerPrecoItem>          
-            <BotaoDeleteItem onClick={() => this.removeItem(produto.name)}><img src={IconeLixeira}/></BotaoDeleteItem>        
+            <BotaoDeleteItem onClick={() => this.removeItem(produto.name)}><img src={IconeLixeira} alt={"Icone lixeira, remover item do carrinho"}/></BotaoDeleteItem>        
           </ContainerDescItemCarrinho>
         </ContainerItemCarrinho>
       )
