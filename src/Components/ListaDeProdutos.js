@@ -9,6 +9,9 @@ import macacaoAstronauta from "../macacao-astronauta.jpeg"
 import capaceteAstronauta from "../capacete-astronauta.jpg"
 import kitAstronauta from "../kit-astronauta.jpg"
 
+
+ // página responsável por listar os produtos da loja virtual;
+ 
 export const listaDeProdutos = [
     //brinquedos
     {

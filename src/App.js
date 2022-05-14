@@ -5,7 +5,12 @@ import { listaDeProdutos } from "./Components/ListaDeProdutos";
 import CarrinhoDeCompras from "./shopping-cart.svg";
 import IconeLixeira from "./iconeLixeira.svg"
 
+
+// no App.js estão as funções que adicionam os produtos ao carrinho de compras;
+
+
 //============================ Estilização ============================
+
 const BarraInformacoes = styled.div`
   display: flex;
   justify-content: space-around;
@@ -15,8 +20,9 @@ const BarraInformacoes = styled.div`
 `;
 const ContainerHome = styled.div`
   /* height:100vh; */
-  width: 90%;
-  margin: auto;
+  width: 80%;
+  margin: center;
+  align-items: center;
 `;
 const ContainerProdutos = styled.div`
   flex-grow: 1;
@@ -36,7 +42,7 @@ width: 250px;
 const Container = styled.div` 
 width: 100%;
 display: grid;
-grid-template-columns: 1fr 3fr 1fr;
+grid-template-columns: 1fr 10fr 1fr;
 
 `
 const CampoOrdenacao = styled.div` 
@@ -65,7 +71,7 @@ const ContainerCarrinho = styled.div`
 display: flex;
 justify-self: flex-end;
 flex-direction: column;
-width: 370px;
+width: 250px;
 height: 100vh;
 box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 position:fixed;
@@ -77,12 +83,16 @@ const ContainerItemCarrinho = styled.div`
   padding: 0 1rem;
   height: 80px;
 `
+//_______________________________
+
 const ContainerTodosProdutos = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  /* align-items: center; */
   overflow-y: auto;
 `
+//__________________________________________________
 const ContainerValorTotal = styled.div`
   display: flex;
   justify-content: space-between;
@@ -151,18 +161,23 @@ class App extends React.Component {
     carrinho: [],
   };
 
-  // componentDidMount(){
-  //   this.pegarProdutosAdicionados();
-  // }
+ 
 
-  // Adicionar item ao carrinho
+  //a função adicionarItemCarrinho é responsável por adicionar um item ao carrinho de compras;
+  // que é  chamada quando o usuário clica no botão de adicionar ao carrinho;
   adicionarCarrinho = (produto) => {
 
+  // a const produtosDoCarrinho é um array que recebe os produtos do carrinho de compras;
+  // que é inicializada como um array vazio;
+  //e vai setando o produto que o usuário clicou no botão de adicionar ao carrinho;
     const produtosDoCarrinho = [...this.state.carrinho]
     let novoProduto = {...produto}
-
+     //a const contem o produto que o usuário clicou e verifica se ele já está no carrinho;
     const contem = produtosDoCarrinho.findIndex(item=> item.name === produto.name)
-    
+    // essa condição verifica se o produto já está no carrinho de compras;
+    // se estiver, ele não adiciona novamente;
+    // se não estiver ele adiciona;
+
     if(contem >= 0){
       novoProduto = produtosDoCarrinho[contem]
       novoProduto.quantidade++
@@ -172,8 +187,8 @@ class App extends React.Component {
       produtosDoCarrinho.push(novoProduto)
     }
 
-    // localStorage.setItem("produtosAdicionados", JSON.stringify(produtosDoCarrinho))
-
+  
+    //estou setando o estado do carrinho de compras com o novo produto adicionado;
     this.setState({ carrinho: produtosDoCarrinho })
   }
 

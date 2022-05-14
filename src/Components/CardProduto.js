@@ -1,12 +1,13 @@
 import React from "react"
 import styled from "styled-components"
 
+// Styled Components dos cards de produtos da página inicial do site da loja virtual;
 const ImagemCard = styled.img` 
 width: 100%;
 height: 200px;
 margin: auto;
 `
-
+//
 const CardDoProduto = styled.div ` 
 display: flex;
 flex-direction: column;
@@ -26,6 +27,14 @@ const TextoProduto = styled.p `
 margin: 5px;
 
 `
+
+//a funçãoo  CardProduto recebe um produto como parâmetro através da propriedade props;
+// props.imageUrl é a url da imagem do produto;
+// props.name é o nome do produto;
+// props.valor é o valor do produto;
+// props.adicionarCarrinho é uma função que adiciona o produto ao carrinho de compras;
+
+
 
 export default function CardProduto(props) {
   return (
