@@ -1,11 +1,11 @@
 import React from "react"
 import styled from "styled-components"
-
+import { listaLimpeza } from "./ListaLimpeza"
 // Styled Components dos cards de produtos da página inicial do site da loja virtual;
 const ImagemCard = styled.img` 
 width: 100%;
-height: 200px;
-margin: auto;
+height: 100%;
+margin-top: 1px ;
 `
 //
 const CardDoProduto = styled.div ` 
@@ -27,6 +27,10 @@ const TextoProduto = styled.p `
 margin: 5px;
 
 `
+const SubTituloProduto = styled.p ` 
+margin: 5px;
+
+`
 
 //a funçãoo  CardProduto recebe um produto como parâmetro através da propriedade props;
 // props.imageUrl é a url da imagem do produto;
@@ -41,6 +45,7 @@ export default function CardProduto(props) {
     <CardDoProduto>
             <ImagemCard src={props.imageUrl}/>
             <TextoProduto>{props.name}</TextoProduto>
+            <TextoProduto>{props.description}</TextoProduto>
             <TextoProduto>R$ {props.valor}</TextoProduto>          
             <BotaoAdicionar onClick={() => props.adicionarCarrinho(props)}>Adicionar ao carrinho</BotaoAdicionar>
     </CardDoProduto>

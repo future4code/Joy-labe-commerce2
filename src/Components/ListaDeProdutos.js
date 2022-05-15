@@ -1,93 +1,130 @@
-import barbieAstronauta from "../barbie-astronauta.jpg"
-import estacaoEspacial from "../estacao-espacial.jpeg"
-import onibusEspacial from "../onibus-espacial.jpg"
-import ursinhoAstronauta from "../ursinho-astronauta.jpg"
-import camiseta1 from "../camiseta1.jpg"
-import camiseta3 from "../camiseta3.jpg"
-import camiseta4 from "../camiseta4.jpg"
-import macacaoAstronauta from "../macacao-astronauta.jpeg"
-import capaceteAstronauta from "../capacete-astronauta.jpg"
-import kitAstronauta from "../kit-astronauta.jpg"
+
+import racao from "../racao-a.JPG"
+import racaoB from "../racao-b.JPG"
+import racaoC from "../racao-c.JPG"
+import racaoD from "../racao-d.JPG"
+import racaoE from "../racao-e.JPG"
+
+import racaoG from "../racao-g.JPG"
+import racaoH from "../racao-h.JPG"
+
+import racaoJ from "../racao-j.JPG"
+import racaoL from "../racao-l.JPG"
+import racaoM from "../racao-m.JPG"
+import racaoN from "../racao-n.JPG"
+import racaoO from "../racao-o.jpg"
+
+
+
 
 
  // página responsável por listar os produtos da loja virtual;
  
 export const listaDeProdutos = [
-    //brinquedos
+    //RAÇÃO
     {
       id: 1,
-      name: "Barbie Astronauta",
+      name: "GOLDEN",
+      description: "GATOS ADULTOS, SABOR CARNE",     
       valor: 99.99,
-      imageUrl: barbieAstronauta,
-      categoria: "Brinquedos com tema espacial",
+      imageUrl: racao,
+      categoria: "Ração",
     },
   
     {
       id: 2,
-      name: "Estação Espacial",
+      name: "GOLDEN",
+      description: "GATOS ADULTOS, SABOR FRANGO",
       valor: 200.10,
-      imageUrl: estacaoEspacial,
-      categoria: "Brinquedos com tema espacial"
+      imageUrl: racaoB,
+      categoria: "Ração"
     },
     {
       id: 3,
-      name: "Ônibus Espacial",
+      name:"GOLDEN",
+      description: "GATOS ADULTOS, SELEÇÃO NATURAL",
       valor: 200.60,
-      imageUrl: onibusEspacial,
-      categoria: "Brinquedos com tema espacial"
+      imageUrl: racaoC,
+      categoria: "Ração"
     },
     {
       id: 4,
-      name: "Ursinho Astronauta",
+      name: "GOLDEN",
+      description: "GATOS ADULTOS, SALMÃO",
       valor: 20000,
-      imageUrl: ursinhoAstronauta,
-      categoria: "Brinquedos com tema espacial"
+      imageUrl: racaoD,
+      categoria: "Ração"
     },
-    //camisetas com estampa
+    
     {
       id: 5,
-      name: "Camiseta estampa astronauta",
+      name: "GOLDEN",
+      description: "GATOS CASTRADOS, FRANGO",
       valor: 300.50,
-      imageUrl: camiseta1,
-      categoria: "Camisetas com estampas divertidas do espaço"
+      imageUrl: racaoE,
+      categoria: "Ração"
     },
     {
       id: 6,
-      name: "Camiseta estampa nasa",
+      name: "GOLDEN",
+      description: "GATOS FILHOTES, FRANGO",
       valor: 90.50,
-      imageUrl: camiseta3,
-      categoria: "Camisetas com estampas divertidas do espaço"
+      imageUrl: racaoL,
+      categoria: "Ração"
     },
+    
+
     {
       id: 7,
-      name: "Camiseta estampa balões planetas",
+      name: "GRAN PLUS",
+      description: "GATOS ADULTOS, FRANGO E ARROZ",
       valor: 100.50,
-      imageUrl: camiseta4,
-      categoria: "Camisetas com estampas divertidas do espaço"
+      imageUrl: racaoG,
+      categoria: "Ração"
     },
   
-    //roupas espaciais
+    
     {
       id: 8,
-      name: "Macacão Astronauta",
+      name: "GRAN PLUS",
+      description: "GATOS ADULTOS, FRANGO E CARNE",
       valor: 100.50,
-      imageUrl: macacaoAstronauta,
-      categoria: "Roupas espaciais"
+      imageUrl: racaoM,
+      categoria: "Ração"
     },
   
     {
       id: 9,
-      name: "Capacete de astronauta",
+      name: "GRAN PLUS",
+      description: "GATOS CASTRADOS, FRANGO E ARROZ",
       valor: 100.50,
-      imageUrl: capaceteAstronauta,
-      categoria: "Roupas espaciais"
+      imageUrl: racaoN,
+      categoria: "Ração"
     },
   
     {
-      id: 10,
-      name: "Kit de Astronauta",
+      id: 12,
+      name: "PREMIER",
+      description: "GATOS FILHOTES, SALMÃO",
       valor: 230.50,
-      imageUrl: kitAstronauta,
-      categoria: "Roupas espaciais"
+      imageUrl: racaoO,
+      categoria: "Ração"
+    }  ,
+  
+    {
+      id: 13,
+      name:"PRMEIER",
+      description: "GATOS CASTRADOS, FRANGO",
+      valor: 230.50,
+      imageUrl: racaoH,
+      categoria: "Ração"
+    } , 
+    {
+      id: 14,
+      name: "PREMIER",
+      description: "GATOS ADULTOS, LIGHT",
+      valor: 230.50,
+      imageUrl: racaoJ,
+      categoria: "Ração"
     }  
 ]

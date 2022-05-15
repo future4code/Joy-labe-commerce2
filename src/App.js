@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import CardProduto from "./Components/CardProduto";
-import { listaDeProdutos } from "./Components/ListaDeProdutos";
+import { listaDeProdutos} from "./Components/ListaDeProdutos";
+import {listaLimpeza} from "./Components/ListaLimpeza";
 import CarrinhoDeCompras from "./shopping-cart.svg";
 import IconeLixeira from "./iconeLixeira.svg"
 
@@ -126,7 +127,7 @@ const ContainerImgProdCarrinho = styled.div`
   width:15%;
 `
 const ImgProdCarrinho = styled.img`
-  height: 50px;
+  height: 40px;
 `
 const ContainerDescItemCarrinho = styled.div`
   display: flex;
@@ -149,10 +150,18 @@ const BotaoDeleteItem = styled.button`
   border: none;
   cursor: pointer;
 `
+
+const todosOsProdutos = [...listaDeProdutos, ...listaLimpeza];
+
+
+
+
+
 class App extends React.Component {
+  
   state = {
-    produtos: listaDeProdutos,
-    query: "",
+    produtos: todosOsProdutos ,
+     query: "",
     precoMinimo: "",
     precoMaximo: "",
     classificacaoCategoria: "",
@@ -271,6 +280,7 @@ class App extends React.Component {
             key={produto.id}
             imageUrl={produto.imageUrl}
             name={produto.name}
+            description={produto.description}
             valor={produto.valor}
             adicionarCarrinho={this.adicionarCarrinho}
           />
